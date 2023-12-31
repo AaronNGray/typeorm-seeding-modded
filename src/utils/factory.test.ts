@@ -1,3 +1,4 @@
+import { ObjectType } from 'typeorm'
 import { getNameOfEntity, isPromiseLike } from './factory.util'
 
 describe('getNameOfClass', () => {
@@ -9,9 +10,9 @@ describe('getNameOfClass', () => {
     const UserEntity = (): any => void 0
     expect(getNameOfEntity(UserEntity)).toBe('UserEntity')
   })
-  test('Passing undefinde as a enity-class should throw an error', () => {
+  test('Passing undefined as a enity-class should throw an error', () => {
     try {
-      getNameOfEntity(undefined)
+      getNameOfEntity(<ObjectType<unknown>>(<unknown>undefined))
     } catch (error) {
       expect(error.message).toBe('Enity is not defined')
     }
